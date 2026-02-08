@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Purpose Day, My Love ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@200;400;600&display=swap');
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: #000; color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden; display: flex; justify-content: center; align-items: center;
+            perspective: 1000px; /* Adds 3D perspective for cinematic feel */
+        }
+
+        /* Opening Page Styles */
+        .opening {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, #1a0a0f 0%, #000 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 20; opacity: 1; transition: 2s opacity ease-out;
+        }
+
+        .opening.hidden { opacity: 0; pointer-events: none; }
+
+        .opening-title {
+            font-family: 'Great Vibes', cursive; font-size: 4rem;
+            color: #ff2d55; text-shadow: 0 0 30px #ff2d55;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 30px #ff2d55; }
+            50% { text-shadow: 0 0 50px #ff2d55, 0 0 70px rgba(255, 45, 85, 0.5); }
+        }
+
+        .opening-subtitle {
+            font-size: 1.2rem; margin-top: 20px; opacity: 0;
+            animation: fadeIn 2s 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .enter-btn {
+            margin-top: 40px; padding: 15px 30px;
+            background: linear-gradient(45deg, #ff2d55, #ff6b9d);
+            border: none; border-radius: 25px; color: white;
+            font-size: 1.1rem; cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 45, 85, 0.5);
+            transition: 0.5s all;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.1); box-shadow: 0 0 30px rgba(255, 45, 85, 0.8);
+        }
+
+        /* Main Container (Initially Hidden) */
+        .container {
+            text-align: center; z-index: 10; width: 90%;
+            transform-style: preserve-3d; opacity: 0; transition: 2s opacity ease-in;
+            animation: cinematicZoom 15s ease-in-out infinite;
+        }
+
+        .container.show { opacity: 1; }
+
+        @keyframes cinematicZoom {
+            0%, 100% { transform: scale(1) rotateX(0deg); }
+            50% { transform: scale(1.05) rotateX(5deg); }
+        }
+
+        /* Cinematic Ambient Glow Background with Depth */
+        .bg {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, #2a0a0f 0%, #0a0a0a 50%, #000 100%);
+            z-index: -2;
+            animation: bgPulse 10s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Floating Particles for Depth */
+        .particle {
+            position: absolute; color: #ff2d55; opacity: 0.6;
+            animation: fall3D linear infinite;
+            font-size: 1.5rem;
+            z-index: -1;
+        }
+
+        @keyframes fall3D {
+            0% { transform: translateY(-100vh) translateZ(0) rotateX(0deg) rotateY(0deg); }
+            100% { transform: translateY(100vh) translateZ(200px) rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* Enhanced 3D Heart Grid */
+        .heart-grid {
+            display: grid; grid-template-columns: repeat(13, 18px);
+            grid-template-rows: repeat(11, 18px); gap: 6px;
+            justify-content: center; margin-bottom: 40px;
+            transform: rotateX(25deg) rotateY(10deg) translateZ(50px);
+            animation: heartFloat 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: rotateX(25deg) rotateY(10deg) translateZ(50px) translateY(0); }
+            50% { transform: rotateX(30deg) rotateY(15deg) translateZ(70px) translateY(-20px); }
+        }
+
+        .dot {
+            width: 18px; height: 18px; background: linear-gradient(45deg, #ff2d55, #ff6b9d);
+            border-radius: 3px; opacity: 0; box-shadow: 0 0 15px #ff2d55, 0 0 30px rgba(255, 45, 85, 0.5);
+            transition: 2s all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateZ(0);
+        }
+
+        .dot.active {
+            opacity: 1; transform: scale(1.2) translateZ(20px);
+            box-shadow: 0 0 20px #ff2d55, 0 0 40px rgba(255, 45, 85, 0.8);
+        }
+
+        /* Text Styling with Cinematic Effects */
+        .poem-box {
+            min-height: 200px; margin-top: 30px;
+            transform: translateZ(30px);
+        }
+
+        .line {
+            font-size: 1.2rem; margin: 10px 0; opacity: 0;
+            transition: 3s opacity, 3s transform;
+            letter-spacing: 1.5px; line-height: 1.6;
+            transform: translateY(20px) translateZ(10px);
+        }
+
+        .line.show {
+            opacity: 1; transform: translateY(0) translateZ(20px);
+        }
+
+        .tulsi-name {
+            font-family: 'Great Vibes', cursive; font-size: 3.5rem;
+            color: #ff2d55; display: block; margin-top: 20px;
+            opacity: 0; transition: 4s all ease-out;
+            text-shadow: 0 0 25px #ff2d55, 0 0 50px rgba(255, 45, 85, 0.6);
+            transform: scale(0.8) translateZ(0);
+        }
+
+        .tulsi-name.show {
+            opacity: 1; transform: scale(1.2) translateZ(30px);
+        }
+
+        /* Subtitle for Extra Flair */
+        .subtitle {
+            font-size: 1rem; opacity: 0; transition: 2s opacity;
+            margin-bottom: 20px; color: #ccc;
+            transform: translateZ(10px);
+        }
+
+        .subtitle.show { opacity: 1; }
+    </style>
+</head>
+<body>
+    <!-- Opening Page -->
+    <div class="opening" id="opening">
+        <div class="opening-title">Happy Purpose Day</div>
+        <div class="opening-subtitle">A Cinematic Journey of Love</div>
+        <button class="enter-btn" id="enterBtn">Enter the Experience</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="bg"></div>
+    <div class="container" id="mainContainer">
+        <div class="subtitle" id="subtitle">A Cinematic Wish for Purpose Day</div>
+        <div class="heart-grid" id="grid"></div>
+        <div class="poem-box" id="poem"></div>
+    </div>
+
+    <script>
+        // Heart Map (same as original, but can be customized)
+        const heartMap = [
+            [0,0,1,1,0,0,0,0,0,1,1,0,0],[0,1,1,1,1,0,0,0,1,1,1,1,0],
+            [1,1,1,1,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1,1,1,1,1,0],
+            [0,0,1,1,1,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,1,1,1,1,0,0,0],
+            [0,0,0,0,1,1,1,1,1,0,0,0,0],[0,0,0,0,0,1,1,1,0,0,0,0,0],
+            [0,0,0,0,0,0,1,0,0,0,0,0,0]
+        ];
+
+        // Poem Lines (customized for Purpose Day)
+        const lines = [
+            "In the chaos of life, you've been my guiding light...",
+            "My purpose, my reason, my everything so bright.",
+            "With you, every moment feels like destiny's call,",
+            "Together forever, we'll conquer it all.",
+            "On this Purpose Day, I want you to know,",
+            "You're my heart's true home, where love overflows.",
+            "I love you endlessly, my dearest Tulsi,",
+            "With you, my purpose is clear, in joy and in pain. ❤️",
+            "<span class='tulsi-name'>Happy Purpose Day, My Love</span>"
+        ];
+
+        // Create 3D Falling Particles (starts after opening)
+        function createParticle() {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.innerHTML = '💖'; // Varied heart emojis for variety
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            p.style.animationDuration = (Math.random() * 5 + 3) + 's';
+            p.style.top = '-50px';
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 8000);
+        }
+
+        // Build Heart Grid
+        const grid = document.getElementById('grid');
+        heartMap.flat().forEach(cell => {
+            const div = document.createElement('div');
+            div.className = 'dot';
+            if (cell === 0) div.style.visibility = 'hidden';
+            grid.appendChild(div);
+        });
+
+        // Opening Page Logic
+        const opening = document.getElementById('opening');
+        const mainContainer = document.getElementById('mainContainer');
+        const enterBtn = document.getElementById('enterBtn');
+
+        enterBtn.addEventListener('click', startExperience);
+
+        function startExperience() {
+            opening.classList.add('hidden');
+            setTimeout(() => {
+                mainContainer.classList.add('show');
+                startMainAnimation();
+            }, 2000); // Delay to match transition
+        }
+
+        // Auto-start after 5 seconds if not clicked
+        setTimeout(() => {
+            if (!opening.classList.contains('hidden')) {
+                startExperience();
+            }
+        }, 5000);
+
+        // Main Animation Sequence
+        function startMainAnimation() {
+            // Start particles
+            setInterval(createParticle, 250);
+
+            // Show subtitle first
+            const subtitle = document.getElementById('subtitle');
+            setTimeout(() => subtitle.classList.add('show'), 500);
+
+            // Animate heart dots with staggered 3D effect
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, i) => {
+                setTimeout(() => dot.classList.add('active'), i * 20 + 1000);
+            });
+
+            // Animate poem lines with cinematic timing
+            setTimeout(async () => {
+                const poemBox = document.getElementById('poem');
+                for (let i = 0; i < lines.length; i++) {
+                    const text = lines[i];
+                    const div = document.createElement('div');
+                    div.className = 'line';
+                    div.innerHTML = text;
+                    poemBox.appendChild(div);
+                    setTimeout(() => div.classList.add('show'), 200);
+                    if (text.includes('tulsi-name')) {
+                        setTimeout(() => div.firstChild.classList.add('show'), 800);
+                    }
+                    await new Promise(r => setTimeout(r, 3000)); // Slower for dramatic effect
+                }
+            }, 3000); // Wait for heart to finish
+        }
+    </script>
+</body>
+</html>
